@@ -11,8 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Main2Activity"></activity>
         <activity
-            android:name=".MainActivity"
-            android:screenOrientation="landscape">
+            android:name=".MainActivity">
 
             <!-- https://developer.android.com/guide/topics/manifest/activity-element -->
             <intent-filter>

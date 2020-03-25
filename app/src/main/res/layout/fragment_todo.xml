@@ -6,7 +6,6 @@
     tools:context=".TodoFragment"
     android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/todo_title"
         android:layout_width="match_parent"

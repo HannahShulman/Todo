@@ -16,21 +16,21 @@ public class Main2Activity extends AppCompatActivity implements ShowTodo {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main2);
 
-        RecyclerView rv = findViewById(R.id.todo_list);
-        rv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        adapter = new TodoAdapter(this);
-        adapter.setList(getList());
-        rv.setAdapter(adapter);
+//        RecyclerView rv = findViewById(R.id.todo_list);
+//        rv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+//        adapter = new TodoAdapter(this);
+//        adapter.setList(getList());
+//        rv.setAdapter(adapter);
     }
 
     //generate information
     public ArrayList<Todo> getList(){
         ArrayList<Todo> list = new ArrayList<>();
-        list.add(new Todo("title "+0, "description "+0, Status.COMPLETED));
+        list.add(new Todo(0, "title "+0, "description "+0, Status.COMPLETED));
         for (int i = 1; i < 50; i++) {
-            list.add(new Todo("title "+i, "description "+i, Status.TODO));
+            list.add(new Todo(i, "title "+i, "description "+i, Status.TODO));
         }
         return list;
     }
@@ -39,4 +39,10 @@ public class Main2Activity extends AppCompatActivity implements ShowTodo {
     public void showTodo(Todo todo){
         Toast.makeText(this, "jfvajgfv", Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void updateStatus(int id, Status status) {
+
+    }
+
 }

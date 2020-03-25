@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
@@ -35,12 +36,10 @@ public class TodoFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static TodoFragment newInstance(String param1, String param2) {
+    public static TodoFragment newInstance(Bundle b) {
         TodoFragment fragment = new TodoFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
+        fragment.setArguments(b);
         return fragment;
     }
 
@@ -70,14 +69,21 @@ public class TodoFragment extends Fragment {
         statusGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                switch (checkedId){
+                Status status = Status.TODO;
+                switch (checkedId) {
                     case R.id.todo_status:
+                        status = Status.TODO;
                         break;
                         case R.id.in_progress_status:
+                            status = Status.IN_PROGRESS;
                         break;
                         case R.id.completed_status:
+                            status = Status.COMPLETED;
                         break;
+                }
 
+                if(getContext() instanceof  ShowTodo){
+                    ((ShowTodo) getContext()).updateStatus(1, status);
                 }
             }
         });
@@ -87,6 +93,8 @@ public class TodoFragment extends Fragment {
         if (getView() != null) {
             title.setText(todo.getTitle());
             description.setText(todo.getDescription());
+
+            //indicate correct status
             @IdRes int id = 0;
             switch(todo.getStatus()){
                 case TODO:

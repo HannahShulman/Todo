@@ -34,13 +34,14 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
     @NonNull
     @Override
     public TodoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_todo_cell, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_todo_cell_layout, parent, false);
         return new TodoViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TodoViewHolder holder, final int position) {
         final Todo todo = list.get(position);
+        holder.cell.setTodoInfo(todo);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -48,21 +49,21 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
                 Toast.makeText(context, ""+position, Toast.LENGTH_SHORT).show();
             }
         });
-        int color = 0;
-        switch (todo.getStatus()){
-            case TODO:
-                color = Color.RED;
-                break;
-            case IN_PROGRESS:
-                color = Color.YELLOW;
-                break;
-
-            case COMPLETED:
-                color = Color.GREEN;
-                break;
-        }
-        holder.statusIndicator.setBackgroundColor(color);
-        holder.todoTitle.setText(todo.getTitle());
+//        int color = 0;
+//        switch (todo.getStatus()){
+//            case TODO:
+//                color = Color.RED;
+//                break;
+//            case IN_PROGRESS:
+//                color = Color.YELLOW;
+//                break;
+//
+//            case COMPLETED:
+//                color = Color.GREEN;
+//                break;
+//        }
+//        holder.statusIndicator.setBackgroundColor(color);
+//        holder.todoTitle.setText(todo.getTitle());
     }
 
     @Override
@@ -72,13 +73,11 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
 
     class TodoViewHolder extends RecyclerView.ViewHolder{
 
-        TextView todoTitle;
-        View statusIndicator;
+        SingleTodoCell cell;
 
         public TodoViewHolder(@NonNull View itemView) {
             super(itemView);
-            todoTitle = itemView.findViewById(R.id.todo_title);
-            statusIndicator = itemView.findViewById(R.id.status_indicator);
+            cell = itemView.findViewById(R.id.cell);
         }
     }
 }
