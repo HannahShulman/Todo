@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TodoFragment"
+    android:orientation="vertical">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/todo_title"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="@string/hello_blank_fragment" />
+
+    <TextView
+        android:id="@+id/todo_description"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/hello_blank_fragment" />
+
+    <RadioGroup
+        android:id="@+id/status_group"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/todo_status"
+            android:text="@string/todo"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/in_progress_status"
+            android:text="@string/in_progress"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/completed_status"
+            android:text="@string/completed"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
+    </RadioGroup>
+
+</LinearLayout>
