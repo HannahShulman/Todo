@@ -1,16 +1,15 @@
 package com.special.todo;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements ShowTodo {
     TodoAdapter adapter;
@@ -20,10 +19,20 @@ public class MainActivity extends AppCompatActivity implements ShowTodo {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        //create and access db
+        TodoDaoDatabase db = Room.databaseBuilder(getApplicationContext(),
+                TodoDaoDatabase.class, "database-name")
+                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries().build();
+
+        db.todoDao().insertAll(getList());
+
+
         RecyclerView rv = findViewById(R.id.todo_list);
         rv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         adapter = new TodoAdapter(this);
-        adapter.setList(getList());
+        adapter.setList(db.todoDao().getAll());
         rv.setAdapter(adapter);
 
 //        final RedButton redBtn = findViewById(R.id.redBtn);
@@ -61,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements ShowTodo {
     @Override
     public void updateStatus(int id, Status status) {
         Todo getTodo;
-        ArrayList<Todo> list = adapter.getList();
+       List<Todo> list = adapter.getList();
         for (int i = 0; i < list.size(); i++) {
             if (adapter.getList().get(i).getId() == id){
                 getTodo = adapter.getList().get(i);

@@ -44,6 +44,8 @@ public class SingleTodoCell extends ConstraintLayout {
     }
 
     public void setTodoInfo(Todo todo){
+        todoTitle.setText(todo.getTitle());
+        if(todo.getStatus() == null) return;
         int color = 0;
         switch (todo.getStatus()){
             case TODO:
@@ -58,6 +60,5 @@ public class SingleTodoCell extends ConstraintLayout {
                 break;
         }
         statusIndicator.setBackgroundColor(color);
-        todoTitle.setText(todo.getTitle());
     }
 }

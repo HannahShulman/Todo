@@ -1,10 +1,20 @@
 package com.special.todo;
 
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "Todo")
 public class Todo {
+    @PrimaryKey
     private int id;
     private String title;
     private String description;
+    @Ignore
     private Status status;
+
+    public Todo() {
+    }
 
     public Todo(int id, String title, String description, Status status) {
         this.id = id;

@@ -12,21 +12,22 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder> {
 
-    private ArrayList<Todo> list = new ArrayList<>();
+    private List<Todo> list = new ArrayList<>();
     private Context context;
 
     public TodoAdapter(Context context) {
         this.context = context;
     }
 
-    public ArrayList<Todo> getList() {
+    public List<Todo> getList() {
         return list;
     }
 
-    public void setList(ArrayList<Todo> list) {
+    public void setList(List<Todo> list) {
         this.list = list;
         notifyDataSetChanged();
     }
@@ -34,7 +35,8 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
     @NonNull
     @Override
     public TodoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_todo_cell_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.single_todo_cell_layout, parent, false);
         return new TodoViewHolder(view);
     }
 
