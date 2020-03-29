@@ -94,6 +94,7 @@ public class TodoFragment extends Fragment {
             title.setText(todo.getTitle());
             description.setText(todo.getDescription());
 
+            if(todo.getStatus() == null) return;
             //indicate correct status
             @IdRes int id = 0;
             switch(todo.getStatus()){
